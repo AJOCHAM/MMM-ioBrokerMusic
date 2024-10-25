@@ -1,0 +1,17 @@
+<div class="music-players">
+    {% for player in players %}
+    <div class="player-box">
+        <h2 class="player-name">{{ player.name }}</h2>
+        
+        {% if player.data.status === "playing" %}
+            <div class="album-cover" style='background-image: url({{ player.data.cover }});'></div>
+            <div class="track-info">
+                <p class="track-name">{{ player.data.track }}</p>
+                <p class="artist-name">{{ player.data.artist }}</p>
+            </div>
+        {% else %}
+            <p class="status">Player is on pause</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
