@@ -16,7 +16,8 @@ module.exports = NodeHelper.create({
             album: `http://${ip}:8087/getPlainValue/${player.albumId}`,
             artist: `http://${ip}:8082/getPlainValue/${player.artistId}`,
             track: `http://${ip}:8082/getPlainValue/${player.trackId}`,
-            cover: `http://${ip}:8082/getPlainValue/${player.coverId}`
+            cover: `http://${ip}:8082/getPlainValue/${player.coverId}`,
+            playerstatus: `http://${ip}:8082/getPlainValue/${player.playerstatus}`,
         };
         
         // Fetch data from each URL
@@ -33,7 +34,8 @@ module.exports = NodeHelper.create({
                 });
             })
         )).then(() => {
-            if (!playerData.track) playerData.status = "Player is on pause";
+            if ((playerData.playerstatus == "false") ||
+                 (playerData.playerstatus == "")) playerData.status = "Player is on pause";
             this.sendSocketNotification("IOBROKER_DATA", { id: player.id, data: playerData });
         });
     }
