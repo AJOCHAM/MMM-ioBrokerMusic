@@ -1,0 +1,23 @@
+{
+  "name": "mmm-iobrokermusic",
+  "version": "1.0.0",
+  "description": "{ \t\t\tmodule: \"MMM-ioBrokerMusic\", \t\t\tposition: \"top_left\", \t\t\tconfig: { \t\t\t\tplayers: [ \t\t\t\t\t{ id: \"Bose\", name: \"Bose Küche\",  \t\t\t\t\t\talbumId: \"bosesoundtouch.1.nowPlaying.album\",  \t\t\t\t\t\tartistId: \"bosesoundtouch.1.nowPlaying.artist\",  \t\t\t\t\t\ttrackId: \"bosesoundtouch.1.nowPlaying.track\",  \t\t\t\t\t\tcoverId: \"bosesoundtouch.1.nowPlaying.art\"  \t\t\t\t\t}, \t\t\t\t\t{ id: \"AlexaKüche\", name: \"AlexaKüche\",  \t\t\t\t\t\talbumId: \"alexa2.0.Echo-Devices.xxxxxxxxxx.Player.currentAlbum\",  \t\t\t\t\t\tartistId: \"alexa2.0.Echo-Devices.xxxxxxxxxx.Player.currentArtist\",  \t\t\t\t\t\ttrackId: \"alexa2.0.Echo-Devices.xxxxxxxxxx.Player.currentTitle\",  \t\t\t\t\t\tcoverId: \"alexa2.0.Echo-Devices.xxxxxxxxxx.Player.miniArtUrl\" } \t\t\t\t] \t\t\t} \t\t},",
+  "main": "MMM-ioBrokerMusic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJOCHAM/MMM-ioBrokerMusic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AJOCHAM/MMM-ioBrokerMusic/issues"
+  },
+  "homepage": "https://github.com/AJOCHAM/MMM-ioBrokerMusic#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}

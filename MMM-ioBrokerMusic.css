@@ -1,4 +1,131 @@
-.music-players {
+#playerboxes * {
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid transparent;
+
+   position: relative;
+  }
+  
+  #playerboxes {
+    height: 100vh;
+  }
+  
+  
+  #player04, .player04 {
+    width: 330px;
+    height: fit-content;
+  }
+  
+ .player {
+    background-color: #080747;
+    padding: 3px;
+    margin-top: 5px;
+    border-radius: 10px;
+  }
+  
+  .player img {
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  #playerboxes .info {
+   color: #E1E1E6;
+  }
+  
+  #playerboxes .info p {
+    opacity: 0.68;
+    font-size: 19px;
+    line-height: 18px;
+  }
+  
+  #playerboxes .info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  #playerboxes .player h1 {
+    font-size: 27px;
+    color: #E1E1E6;
+    padding-bottom: 3px;
+    line-height: 24px;
+  }
+  
+  #playerboxes .controls {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  
+  #playerboxes .track {
+    padding-top: 15px;
+   position: relative;
+  
+  }
+  
+  .track::before {
+  content: '';
+  height: 6px;
+  width: 100%;
+  display: block;
+  background: #D9D9D9;
+  opacity: 0.3;
+  border-radius: 10px;
+  position: absolute;
+  }
+
+  /* Fortschritt je Player (Breite kommt inline aus dem Template) */
+  #playerboxes .track-progress {
+    height: 6px;
+    background: #D9D9D9;
+    border-radius: 10px;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    border: 0;
+    transition: width 1s linear;
+  }
+  
+  #playerboxes .time {
+    opacity: 0.7;
+    font-size: 14px;
+    color: gainsboro;
+  
+    display: flex;
+    justify-content: space-between;
+    padding-top: 9.6px;
+  }
+  
+  @media (max-width: 670px) {
+    #playerboxes {
+      display:flex;
+      flex-direction: column;
+  
+      max-width: 270px;
+      margin: auto;
+  
+  
+      height: auto;
+      padding-block: 60px;
+    }
+  
+  
+  
+  }
+  
+  
+  
+  
+  
+
+/*.music-players {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -53,3 +180,7 @@
     color: #999;
     font-style: italic;
 }
+
+
+
+*/

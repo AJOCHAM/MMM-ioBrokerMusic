@@ -1,16 +1,28 @@
-<div class="music-players">
-    {% for player in players %}
-    <div class="player-box">
-        <h2 class="player-name">{{ player.name }}</h2>
-        
-        {% if player.data.status === "playing" %}
-            <div class="album-cover" style='background-image: url({{ player.data.cover }});'></div>
-            <div class="track-info">
-                <p class="track-name">{{ player.data.track }}</p>
-                <p class="artist-name">{{ player.data.artist }}</p>
-            </div>
-        
+<div id="playerboxes">
+  {% for player in players %}
+    <div class="player player04 horizontal">
+      <div class="wrapper">
+        <div class="info-wrapper">
+          {% if player.data.cover %}<img src="{{ player.data.cover }}" alt="Cover">{% endif %}
+          <div class="info">
+            <h1>{{ player.data.track }}</h1>
+            <p>{{ player.data.artist }}</p>
+          </div>
+        </div>
+
+        {% if player.data.hasTime %}
+        <div class="track-time">
+          <div class="track"><div class="track-progress" style="width: {{ player.data.progress }}%;"></div></div>
+          <div class="time">
+            <div class="total-time">{{ player.data.elapsedText }}</div>
+            <div class="playername">{{ player.name }}</div>
+            <div class="last-time">{{ player.data.totalText }}</div>
+          </div>
+        </div>
+        {% else %}
+        <div class="time"><div class="playername">{{ player.name }}</div></div>
         {% endif %}
+      </div>
     </div>
-    {% endfor %}
+  {% endfor %}
 </div>

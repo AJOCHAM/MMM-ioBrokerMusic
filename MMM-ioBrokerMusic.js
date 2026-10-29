@@ -1,46 +1,46 @@
 Module.register("MMM-ioBrokerMusic", {
-    defaults: {
-        players: [], // Array of player configurations
-        updateInterval: 10000 // Data refresh interval in milliseconds
-    },
+  defaults: {
+    ip: "iobroker.local",
+    port: 8082,
+    players: [], // Player-Konfigurationen
+    updateInterval: 10000 // ms
+  },
 
-    start() {
-        this.playersData = {}; // Object to store player data
-        this.getData();
-        setInterval(() => this.getData(), this.config.updateInterval);
-    },
+  start() {
+    this.playersData = {};
+    this.getData();
+    this.timer = setInterval(() => this.getData(), this.config.updateInterval);
+  },
 
-    getData() {
-        // Loop through each player and fetch data from ioBroker
-        this.config.players.forEach(player => {
-            this.sendSocketNotification("FETCH_IOBROKER_DATA", player);
-        });
-    },
 
-    	// Define required scripts.
-	getStyles: function() {
-		return ["MMM-ioBrokerMusic.css", "font-awesome.css"];
-	},
+  getData() {
+    const baseURL = `http://${this.config.ip}:${this.config.port}`;
+    this.config.players.forEach((player) => {
+      this.sendSocketNotification("FETCH_IOBROKER_DATA", { baseURL, player });
+    });
+  },
 
-    socketNotificationReceived(notification, payload) {
-        if (notification === "IOBROKER_DATA") {
-            this.playersData[payload.id] = payload.data;
-            this.updateDom();
-        }
-    },
+  getStyles() {
+    return ["MMM-ioBrokerMusic.css", "font-awesome.css"];
+  },
 
-    getTemplate() {
-        return "MMM-ioBrokerMusic.njk";
-    },
-
-    getTemplateData() {
-        return {
-            players: this.config.players
-                .map(player => ({
-                    name: player.name,
-                    data: this.playersData[player.id] || { status: "Player is on pause" }
-                }))
-                .filter(player => player.data.status !== "Player is on pause") // Only include active players
-        };
+  socketNotificationReceived(notification, payload) {
+    if (notification === "IOBROKER_DATA") {
+      const prev = JSON.stringify(this.playersData[payload.id]);
+      this.playersData[payload.id] = payload.data;
+      if (prev !== JSON.stringify(payload.data)) this.updateDom();
     }
+  },
+
+  getTemplate() {
+    return "MMM-ioBrokerMusic.njk";
+  },
+
+  getTemplateData() {
+    return {
+      players: this.config.players
+        .map((p) => ({ name: p.name, data: this.playersData[p.id] }))
+        .filter((p) => p.data && p.data.playing)
+    };
+  }
 });
